@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>SESAME A-Frame v0.1</title>
+    <meta name="description" content="CMS A-Frame">
+
+    <script src="https://aframe.io/releases/0.8.2/aframe.min.js"></script>
+
+    <script src="https://unpkg.com/aframe-animation-component@^4.1.2/dist/aframe-animation-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-event-set-component@^4.0.0/dist/aframe-event-set-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-layout-component@4.2/dist/aframe-layout-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-template-component@^3.2.1/dist/aframe-template-component.min.js"></script>
+
+    <script src="components/set-image.js"></script>
+
+  </head>
+  <body>
+    <a-scene>
+      <a-assets>
+
+	<img id="sesame02" crossorigin="anonymous" src="img/201801-015_02.jpg">
+        <img id="sesame03" crossorigin="anonymous" src="img/201801-015_03.jpg">
+        <img id="sesame06" crossorigin="anonymous" src="img/201801-015_06.jpg">
+	<img id="sesame07" crossorigin="anonymous" src="img/201801-015_07.jpg">
+        <img id="sesame09" crossorigin="anonymous" src="img/201801-015_09.jpg">
+        <img id="sesame15" crossorigin="anonymous" src="img/201801-015_15.jpg">
+        <img id="sesame16" crossorigin="anonymous" src="img/201801-015_16.jpg">
+        <img id="sesame17" crossorigin="anonymous" src="img/201801-015_17.jpg">
+
+	<img id="sesame02-thumb" crossorigin="anonymous" src="img/02-thumb.png">
+        <img id="sesame03-thumb" crossorigin="anonymous" src="img/03-thumb.png">
+        <img id="sesame06-thumb" crossorigin="anonymous" src="img/06-thumb.png">
+	<img id="sesame07-thumb" crossorigin="anonymous" src="img/07-thumb.png">
+        <img id="sesame09-thumb" crossorigin="anonymous" src="img/09-thumb.png">
+        <img id="sesame15-thumb" crossorigin="anonymous" src="img/15-thumb.png">
+        <img id="sesame16-thumb" crossorigin="anonymous" src="img/16-thumb.png">
+        <img id="sesame17-thumb" crossorigin="anonymous" src="img/17-thumb.png">
+
+        <audio id="click-sound" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/audio/click.ogg"></audio>
+	
+        <script id="link" type="text/html">
+          <a-entity class="link"
+		    geometry="primitive: plane; height: 1; width: 1"
+		    material="shader: flat; src: ${thumb}"
+		    event-set__1="_event: mousedown; scale: 1 1 1"
+		    event-set__2="_event: mouseup; scale: 1.2 1.2 1"
+		    event-set__3="_event: mouseenter; scale: 1.2 1.2 1"
+		    event-set__4="_event: mouseleave; scale: 1 1 1"
+		    set-image="on: click; target: #image-360; src: ${src}"   
+		    sound="on: click; src: #click-sound">
+	  </a-entity>
+        </script>
+      </a-assets>
+
+      <a-sky id="image-360" radius="10" src="#sesame02"></a-sky>
+
+      <a-entity id="links0" layout="type: line; margin: 1.5" position="-2.25 0 -4">
+	<a-entity template="src: #link" data-src="#sesame02" data-thumb="#sesame02-thumb"></a-entity>
+        <a-entity template="src: #link" data-src="#sesame03" data-thumb="#sesame03-thumb"></a-entity>
+        <a-entity template="src: #link" data-src="#sesame06" data-thumb="#sesame06-thumb"></a-entity>
+        <a-entity template="src: #link" data-src="#sesame07" data-thumb="#sesame07-thumb"></a-entity>
+      </a-entity>
+      
+      <a-entity id="links1" layout="type: line; margin: 1.5" position="-2.25 -1.5 -4">
+        <a-entity template="src: #link" data-src="#sesame09" data-thumb="#sesame09-thumb"></a-entity>
+        <a-entity template="src: #link" data-src="#sesame15" data-thumb="#sesame15-thumb"></a-entity>
+        <a-entity template="src: #link" data-src="#sesame16" data-thumb="#sesame16-thumb"></a-entity>
+        <a-entity template="src: #link" data-src="#sesame17" data-thumb="#sesame17-thumb"></a-entity>
+      </a-entity>
+      
+      <a-entity camera look-controls>
+     
+	<a-cursor id="cursor"
+          animation__click="property: scale; startEvents: click; from: 0.1 0.1 0.1; to: 1 1 1; dur: 150"
+          animation__fusing="property: fusing; startEvents: fusing; from: 1 1 1; to: 0.1 0.1 0.1; dur: 1500"
+          event-set__1="_event: mouseenter; color: springgreen"
+          event-set__2="_event: mouseleave; color: black"
+          fuse="true"
+          raycaster="objects: .link"></a-cursor>
+      </a-entity>
+     
+
+      <a-text font="kelsonsans" value="" width="10" position="-2.25 -5.0 -4.0" rotation=""></a-text>
+
+    </a-scene>
+  </body>
+</html>
